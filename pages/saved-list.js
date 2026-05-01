@@ -239,6 +239,24 @@ Array.from(document.querySelectorAll('input[name="locale"]')).forEach((el) => {
 });
 
 
+function setDblClickModifier() {
+  browser.storage.local.get('settings').then((item) => {
+    const mod = (item.settings || {}).dblClickModifier || 'none';
+    Array.from(document.querySelectorAll('input[name="dblClickModifier"]')).forEach((el) => {
+      el.checked = el.value === mod;
+    });
+  });
+}
+
+function toggleDblClickModifier(e) {
+  updateSettings('dblClickModifier', e.target.value);
+}
+
+Array.from(document.querySelectorAll('input[name="dblClickModifier"]')).forEach((el) => {
+  el.addEventListener('click', toggleDblClickModifier);
+});
+
+
 function openModal(target) {
   if (typeof target === 'string')
     target = document.querySelector(target)
@@ -359,7 +377,14 @@ document.getElementById('exportDownloadButton').addEventListener('click', (e) =>
   document.getElementById('themeSettingLabel').textContent = browser.i18n.getMessage("changeThemeLabel");
   document.getElementById('themeLightLabel').textContent = browser.i18n.getMessage("themeLightLabel");
   document.getElementById('themeDarkLabel').textContent = browser.i18n.getMessage("themeDarkLabel");
-  // TODO: add translations for double trigger settings
+  document.getElementById('dblClickTriggerSettingLabel').textContent = browser.i18n.getMessage("dblClickTriggerLabel");
+  document.getElementById('dblClickTriggerYesLabel').textContent = browser.i18n.getMessage("dblClickTriggerYesLabel");
+  document.getElementById('dblClickModifierSettingLabel').textContent = browser.i18n.getMessage("dblClickModifierLabel");
+  document.getElementById('modifierNoneLabel').textContent = browser.i18n.getMessage("modifierNoneLabel");
+  document.getElementById('modifierCtrlLabel').textContent = browser.i18n.getMessage("modifierCtrlLabel");
+  document.getElementById('modifierAltLabel').textContent = browser.i18n.getMessage("modifierAltLabel");
+  document.getElementById('modifierShiftLabel').textContent = browser.i18n.getMessage("modifierShiftLabel");
+  document.getElementById('modifierMetaLabel').textContent = browser.i18n.getMessage("modifierMetaLabel");
   document.getElementById('closeSettingsModalButton').textContent = browser.i18n.getMessage("closeBtnTitle");
   document.getElementById('exportButton').textContent = browser.i18n.getMessage("exportBtnLabel");
   document.getElementById('closeExportModalButton').textContent = browser.i18n.getMessage("closeBtnTitle");
@@ -369,6 +394,7 @@ document.getElementById('exportDownloadButton').addEventListener('click', (e) =>
   setTheme();
   setDblClickTrigger();
   setLocale();
+  setDblClickModifier();
 
   if (window.location.hash === '#settingsModal') {
     openModal('#settingsModal');

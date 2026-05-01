@@ -147,5 +147,45 @@
   "themeDarkLabel": {
     "message": "Scuro",
     "description": "Name or label for Dark theme."
+  },
+
+  "dblClickTriggerLabel": {
+    "message": "Mostra popup al doppio clic",
+    "description": "Label for double-click trigger setting."
+  },
+
+  "dblClickTriggerYesLabel": {
+    "message": "Sì",
+    "description": "Yes label for double-click trigger checkbox."
+  },
+
+  "dblClickModifierLabel": {
+    "message": "Tasto modificatore per il doppio clic",
+    "description": "Label for modifier key setting."
+  },
+
+  "modifierNoneLabel": {
+    "message": "Nessuno",
+    "description": "No modifier key required."
+  },
+
+  "modifierCtrlLabel": {
+    "message": "Ctrl",
+    "description": "Ctrl modifier key."
+  },
+
+  "modifierAltLabel": {
+    "message": "Alt",
+    "description": "Alt modifier key."
+  },
+
+  "modifierShiftLabel": {
+    "message": "Shift",
+    "description": "Shift modifier key."
+  },
+
+  "modifierMetaLabel": {
+    "message": "Meta",
+    "description": "Meta/Super modifier key."
   }
 }

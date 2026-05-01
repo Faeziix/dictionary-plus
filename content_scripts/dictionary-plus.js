@@ -638,12 +638,14 @@ browser.runtime.onMessage.addListener((message) => {
 });
 
 
-document.addEventListener('dblclick', (e) => {
-  if (SETTINGS.hasOwnProperty('dblClickTrigger')) {
-    if (!SETTINGS.dblClickTrigger)
-      return;
-  }
+const MOD_KEY_MAP = { ctrl: 'ctrlKey', alt: 'altKey', shift: 'shiftKey', meta: 'metaKey' };
 
+document.addEventListener('dblclick', (e) => {
+  if (SETTINGS.hasOwnProperty('dblClickTrigger') && !SETTINGS.dblClickTrigger)
+    return;
+  const mod = SETTINGS.dblClickModifier || 'none';
+  if (mod !== 'none' && !e[MOD_KEY_MAP[mod]])
+    return;
   createPopUp();
 });
 
